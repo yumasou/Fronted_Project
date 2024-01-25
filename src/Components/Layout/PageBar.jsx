@@ -18,8 +18,7 @@ function PageBar() {
       dispatch(set_first_current_page());
     }
   }, [page]);
-  console.log(page);
-  console.log(last_page);
+  
   return (
     <div className="w-full h-14 my-10  ">
       <ul

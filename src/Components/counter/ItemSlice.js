@@ -3,7 +3,6 @@ import axios from "axios";
 
 
 export const fetchItem=createAsyncThunk("items/fetchItem",async(url)=>{
-    
     const result=await axios.get(url)
     return result.data
 })

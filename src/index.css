@@ -1,9 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@200;400;600;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@200;400;600;800&display=swap");
+@import "~react-image-gallery/styles/css/image-gallery.css";
 
-.card{
-    @apply relative overflow-hidden rounded  shadow-lg cursor-pointer bg-white  transition ease-out transform hover:scale-105 duration-500;
+.card {
+  @apply relative overflow-hidden rounded  shadow-lg cursor-pointer bg-white  transition ease-out transform hover:scale-105 duration-500;
 }

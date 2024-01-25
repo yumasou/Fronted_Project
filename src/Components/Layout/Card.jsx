@@ -14,16 +14,17 @@ function Card({
 }) {
   const navigate=useNavigate()
   return (
-    <div onClick={()=>{navigate(`${id}`)}} className="card">
+    <div onClick={()=>{navigate(`/products/${id}`)}} className="card">
       <img
         src={image}
         alt="something"
         className=" w-full h-32 sm:h-42 object-cover "
       />
-      <div className="my-3">
-        <span className="block font-bold  mx-3">{title}</span>
-        <p className="text-small mt-3 mx-3  text-slate-600 first-letter:ml-1 ">{description}</p>
-        <span className="mt-3 mx-3 flex justify-between items-center ">
+       <span className="text-sm uppercase text-bold rounded-full bg-gray-300 opacity-80 py-2  px-4 absolute top-3 left-2 text-red-500">{`${discount} %`}</span>
+      <div className="my-3 ">
+        <span className="inline-block h-6 overflow-y-hidden font-bold text-slate-800 mx-3">{title}</span>
+        <p className="text-small overflow-y-hidden h-20 mt-3 mx-3  text-slate-600 first-letter:ml-1 ">{description}</p>
+        <span className="mt-3 mx-3  flex justify-between items-center ">
           <span>
             <span className="text-red-500">
               {parseInt(price - price / (discount * 100))}$
@@ -36,7 +37,7 @@ function Card({
           </span>
         </span>
       </div>
-      <span className="text-sm uppercase text-bold rounded-full bg-gray-300 opacity-80 py-2  px-4 absolute top-3 left-2 text-red-500">{`${discount} %`}</span>
+     
     </div>
   );
 }
