@@ -1,22 +1,23 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,useLocation } from "react-router-dom";
 import Home from "../View/Home";
 import Products from "../View/Products";
-import About from "../View/About";
 import DetailView from "../View/DetailView";
-import Contact from "../View/Contact";
-
+import Test from "../View/Test";
+import { AnimatePresence } from "framer-motion";
 
 function Body() {
+  const location=useLocation()
+  console.log(location)
   return (
-    <Routes>
+    <AnimatePresence mode="wait">
+    <Routes location={location} key={location.key} >
       <Route path="/" element={<Home />} />
       <Route path="/products" element={<Products />} />
-      {/* <Route path="/services" element={<Services/>} /> */}
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/about" element={<About />} />
       <Route path="/products/:id" element={<DetailView />} />
+      <Route path="/test" element={<Test/>}/>
     </Routes>
+    </AnimatePresence>
   );
 }
 

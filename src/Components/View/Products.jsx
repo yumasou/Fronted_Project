@@ -6,7 +6,7 @@ import Card from "../Layout/Card";
 import PageBar from "../Layout/PageBar";
 import { set_last_page } from "../counter/PageSlice";
 import Loading from "../Layout/Loading";
-import Slider from "../Layout/Slider";
+import {motion, AnimatePresence } from "framer-motion";
 import { fetchCatType } from "../counter/CatTypeSlice";
 import SecondHeader from "../Layout/SecondHeader";
 function Products() {
@@ -14,7 +14,7 @@ function Products() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const current_page = useSelector((state) => state.pages.current_page);
-  const EachofCat = useSelector((state) => state.catType.data);
+  
 
   useEffect(() => {
     dispatch(fetchCatType(`${Base_URL}/categories`));
@@ -32,25 +32,24 @@ function Products() {
   }, [products, current_page]);
 
   return products.loading === "done" ? (
-    <div>
-      <div className="my-10">
-        <span className="block my-3">
-          <span className="mx-10 text-lg text-slate-700 ">By Category</span>
-          <hr className="mx-10 shadow-lg" />
-        </span>
-        <div className="my-10">
-          {EachofCat.length > 0 ? <Slider list={EachofCat} /> : <Loading />}
-        </div>
+    <AnimatePresence>
+      <div>
+      <motion.div
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      transition={{type:"spring",damping:10, when:"beforeChildren",staggerChildren:0.1 }}
+      className="my-10 ">
         <span className="flex justify-between">
-          <span className="mx-10 text-lg text-slate-700 "> Products</span>
+          <span className="mx-10 text-lg text-slate-600 "> Products</span>
           <SecondHeader />
         </span>
         <hr className="mx-10 shadow-lg" />
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-10 mx-10 mt-10 ">
           {data &&
-            data.map((m) => (
+            data.map((m,index) => (
               <Card
                 key={m.id}
+                index={index}
                 id={m.id}
                 title={m.title}
                 image={m.thumbnail}
@@ -62,8 +61,10 @@ function Products() {
             ))}
         </div>
         <PageBar />
-      </div>
+      </motion.div>
     </div>
+    </AnimatePresence>
+    
   ) : (
     <Loading />
   );

@@ -41,7 +41,7 @@ function Slider({ list }) {
           removeArrowOnDeviceType={["tablet", "mobile"]}
           // deviceType={this.props.deviceType}
           dotListClass="custom-dot-list-style"
-          itemClass="mx-3 h-44"
+          itemClass="mx-3 rounded shadow-lg"
         >
           {list.map((m) => (
             <Card

@@ -1,22 +1,119 @@
 import React from "react";
-import Button from "../Layout/Button";
-import { useNavigate } from "react-router-dom";
+import { motion, useTransform, useScroll } from "framer-motion";
+import MySkills from "./MySkills";
+import MyExperience from "./MyExperience";
+import AboutMe from "./AboutMe";
+import Objective from "./Objective";
+import Education from "./Education";
+import Certifications from "./Certifications";
+import Projects from "./Projects";
+import Contact from "./Contact";
+const skills = [
+  "HTML",
+  "CSS",
+  "Bootstrap",
+  "Tailwind CSS",
+  "JavaScript",
+  "React.JS",
+  "Node.JS",
+  "Express.JS",
+  "MongoDB",
+  "Redux",
+  "Git",
+  "API",
+  "RESTful API",
+  "Framer Motion",
+];
+const myExps = [
+  "Collaborate with a dynamic team to design and implement engaging and responsive dashboards.",
+  "Develop APIs to support mobile applications, ensuring efficient data flow and communication between the frontend and backend.",
+  "Collaborate with backend developers to integrate frontend components seamlessly with the server-side logic.",
+  "Stay up-to-date with industry trends and best practices, bringing innovative solutions to the development process",
+];
+const objective =
+  "Highly skilled and motivated web developer in front-end and back-end development , seeking to leverage expertise in MERN stack to contribute effectively to  your development team. Committed to delivering high-quality, user-centric web solutions while continuously expanding knowledge and staying abreast of emerging trends in web development";
+const personal = "";
+const edu = {
+  school: "University of Computer Studies",
+  town: "Monywa",
+  start: "Dec 2015",
+  end: "Oct 2019",
+  status: "undergraduate",
+  major: "computer science",
+};
+const certificate = [
+  {
+    title: "Practical A+",
+    year: "2016",
+    center: "I-Campus Complete IT Training Solution",
+  },
+  {
+    title: "Professional Web Developer",
+    year: "2020",
+    center: "Fairway Technology",
+  },
+];
+const projects = [
+  {
+    title: "Sample Website",
+    image_url:"/images/funny_poo.png",
+    description: "This is sample website for example",
+    link: "https://funny-poo.netlify.app/",
+    language: "React,Bootstrap",
+  },
+  {
+    title: "Weather App",
+    image_url:"/images/weather_app.png",
+    description:
+      "This is weathering status app , you can know the weather status of every country searching by city name with exactly",
+    language: "React,axios,api,Bootstrap",
+    link: "https://weathering-app-react.netlify.app/",
+  },
+  {
+    title: "Drum kit",
+    image_url:"/images/drum_kid.png",
+    description:
+      "This is drum kit application created by using Javascript only",
+    language: "JavaScript,CSS",
+    link: "https://drumkidapp.netlify.app/",
+  },
+  {
+    title: "Note App",
+    image_url:"/images/note_app.png",
+    description: "This is simple Note application using by React",
+    language: "React,CSS,LocalStorage",link:"https://note-application-with-react.netlify.app/"
+  },
+];
 function Home() {
-  const navigate = useNavigate();
-  function rediect() {
-    navigate("/products");
-  }
-
+  const containerVarient = {
+    initial: { opacity: 0 },
+    mate: {
+      opacity: 1,
+      transiton: { type: "spring", delay: 0.3, duration: 0.5 },
+    },
+    close: { opacity: 0, transiton: { duration: 0.5, when: "afterChildren" } },
+  };
   return (
-    <div className="min-h-screen bg-cover bg-center opacity-100" style={{ backgroundImage: 'url("/images/shopping.jpg")' }}>
-      <div className="flex flex-col items-center"><h1 className=" uppercase font-bold lg:text-7xl md:text-6xl sm:text-5xl text-white  text-center pt-28">New Gear for</h1>
-      <h2 className="my-10 uppercase font-bold lg:text-6xl md:text-5xl sm:text-4xl text-white  text-center ">The New School Year</h2>
-      <p className="w-2/3 text-pink-600 text-pretty font-bold sm:text-small text-end my-5 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates inventore, odio quam omnis tempora excepturi beatae optio, eum vitae pariatur quibusdam perferendis. Odit sed aspernatur eum vitae aperiam, nesciunt fuga.</p>
-      
-    </div>
-    <div className="flex justify-evenly my-5"> <Button action={()=>rediect()} color="pink" size="lg" text="Shop Now" /></div>
-   </div>
-    
+    <motion.div
+      variants={containerVarient}
+      initial="initial"
+      animate="mate"
+      exit="close"
+      // style={{scale}}
+    >
+      <motion.div
+      // style={{scaleY:scrollYProgress}}
+      >
+        <AboutMe />
+        <Objective objects={objective.split("")} />
+        <Contact />
+        <MySkills skills={skills} />
+        <MyExperience exp={myExps} />
+        <Education edu={edu} />
+        <Certifications certificate={certificate} />
+        <Projects projects={projects} />
+      </motion.div>
+    </motion.div>
   );
 }
 

@@ -1,9 +1,18 @@
 import React from 'react'
-
+import { AnimatePresence,motion } from 'framer-motion'
 function Footer() {
+  const Footer={
+    initial: { opacity: 0 },
+    animate: { opacity: 1,transition: { delay: 0.1 }, },
+    
+  }
   return (
- 
-<footer
+ <AnimatePresence>
+  <motion.footer
+  variants={Footer}
+  viewport={{once:true}}
+  initial="initial"
+  whileInView="animate"
   className="flex flex-col items-center bg-neutral-900 text-center text-white">
   <div className="container px-6 pt-6">
    
@@ -89,7 +98,6 @@ function Footer() {
             d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
         </svg>
       </a>
-
       <a
         href="#!"
         type="button"
@@ -106,47 +114,6 @@ function Footer() {
         </svg>
       </a>
     </div>
-
-
-    <div>
-      <form action="">
-        <div
-          className="gird-cols-1 grid items-center justify-center gap-4 md:grid-cols-3">
-          <div className="md:mb-6 md:ml-auto">
-            <p className="">
-              <strong>Sign up for our newsletter</strong>
-            </p>
-          </div>
-
-          
-          <div className="relative md:mb-6" data-te-input-wrapper-init>
-            <input
-              type="text"
-              className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] text-neutral-200 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-              id="exampleFormControlInput1"
-              placeholder="Email address" />
-            <label
-              for="exampleFormControlInput1"
-              className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-200 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-neutral-200 peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-neutral-200"
-              >Email address
-            </label>
-          </div>
-
-         
-          <div className="mb-6 md:mr-auto">
-            <button
-              type="submit"
-              className="inline-block rounded border-2 border-neutral-50 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-              data-te-ripple-init
-              data-te-ripple-color="light">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    
     <div className="mb-6">
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
@@ -155,56 +122,21 @@ function Footer() {
         aliquam sequi voluptate quas.
       </p>
     </div>
-
-
-    <div className="grid md:grid-cols-2 lg:grid-cols-4">
-      <div className="mb-6">
-        <h5 className="mb-2.5 font-bold uppercase">Links</h5>
-
-        <ul className="mb-0 list-none">
-          <li>
-            <a href="#!" className="text-white">Link 1</a>
-          </li>
-          <li>
-            <a href="#!" className="text-white">Link 2</a>
-          </li>
-          <li>
-            <a href="#!" className="text-white">Link 3</a>
-          </li>
-          
-        </ul>
-      </div>
+    <div className="grid md:grid-cols-1 lg:grid-cols-2">
 
       <div className="mb-6">
         <h5 className="mb-2.5 font-bold uppercase">Links</h5>
 
         <ul className="mb-0 list-none">
           <li>
-            <a href="#!" className="text-white">Link 1</a>
+            <a href="/" className="text-white">Resume</a>
           </li>
-          <li>
+          {/* <li>
             <a href="#!" className="text-white">Link 2</a>
           </li>
           <li>
             <a href="#!" className="text-white">Link 3</a>
-          </li>
-          
-        </ul>
-      </div>
-
-      <div className="mb-6">
-        <h5 className="mb-2.5 font-bold uppercase">Links</h5>
-
-        <ul className="mb-0 list-none">
-          <li>
-            <a href="#!" className="text-white">Link 1</a>
-          </li>
-          <li>
-            <a href="#!" className="text-white">Link 2</a>
-          </li>
-          <li>
-            <a href="#!" className="text-white">Link 3</a>
-          </li>
+          </li> */}
          
         </ul>
       </div>
@@ -214,14 +146,14 @@ function Footer() {
 
         <ul className="mb-0 list-none">
           <li>
-            <a href="#!" className="text-white">Link 1</a>
+            <a href="#!" className="text-white">Shop</a>
           </li>
-          <li>
+          {/* <li>
             <a href="#!" className="text-white">Link 2</a>
           </li>
           <li>
             <a href="#!" className="text-white">Link 3</a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
@@ -232,7 +164,9 @@ function Footer() {
     >
     © 2024 Copyright:Hein Htet Paing
   </div>
-</footer>
+</motion.footer>
+ </AnimatePresence>
+
   )
 }
 

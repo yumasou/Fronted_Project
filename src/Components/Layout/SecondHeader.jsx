@@ -1,42 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import {
-//   fetchTownship,
-//   setFilterTSP,
-//   setFilterType,
-// } from "../../feature/counter/townshipSlice";
+
 
 function SecondHeader() {
-//   const filterTSP = useSelector((state) => state.township.filterTSP);
-//   const filterType = useSelector((state) => state.township.filterType);
+
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(fetchTownship());
+  
   }, []);
-//   const townshipList = useSelector((state) => state.township.data);
-//   const typeList = useSelector((state) => state.township.type);
+
 
   return (
     <div className=" mx-10">
-      <header className="flex justify-end items-center">
-        
+      <header className="grid grid-cols-1 ">
         <ul className="">
-          <li className="">
-            <div className="">
-            <span className="text-red-500">*** Maintenaning ***</span>
+          <li className="flex items-center justify-end">
+              <input type="search" placeholder={`under maintaince`} className=" w-5/6 rounded-lg  text-slate-700 bg-slate-100 focus:outline-none px-3 mx-2" />
               <button
-                className=" "
+                className=""
                 type="button"
-                data-bs-toggle=""
-                aria-expanded="false"
               >
-                {/* {filterType
-                  ? typeList
-                      .filter((m) => m.id === filterType)
-                      .map((m) => m.name)
-                  : "Filter"} */}
-               
+                
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -51,51 +36,6 @@ function SecondHeader() {
                   />
                 </svg>
               </button>
-              <ul className="">
-                {/* {typeList.map((m) => (
-                  <li>
-                    <button
-                      className="dropdown-item"
-                      key={m.id}
-                    //   onClick={() => dispatch(setFilterType(m.id))}
-                    >
-                      {m.name}
-                    </button>
-                  </li>
-                ))} */}
-              </ul>
-            </div>
-          </li>
-          <li className="">
-            <div className="">
-              <button
-                className=""
-                type=""
-                data-bs-toggle=""
-                aria-expanded="false"
-              >
-                {/* {filterTSP
-                  ? townshipList
-                      .filter((m) => m.id === filterTSP)
-                      .map((m) => m.name)
-                  : "By TownShip"} */}
-              </button>
-
-              <ul className="">
-            
-                {/* {townshipList.map((m) => (
-                  <li>
-                    <button
-                      key={m.id}
-                      className="dropdown-item"
-                    //   onClick={() => dispatch(setFilterTSP(m.id))}
-                    >
-                      {m.name}
-                    </button>
-                  </li>
-                ))} */}
-              </ul>
-            </div>
           </li>
         </ul>
       </header>
