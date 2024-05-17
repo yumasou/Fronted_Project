@@ -8,14 +8,14 @@ import { AnimatePresence } from "framer-motion";
 
 function Body() {
   const location=useLocation()
-  console.log(location)
   return (
     <AnimatePresence mode="wait">
     <Routes location={location} key={location.key} >
+      
       <Route path="/" element={<Home />} />
-      <Route path="/products" element={<Products />} />
-      <Route path="/products/:id" element={<DetailView />} />
-      <Route path="/test" element={<Test/>}/>
+      {/* <Route path="/products" element={<Products />} /> */}
+      {/* <Route path="/products/:id" element={<DetailView />} /> */}
+      {/* <Route path="/test" element={<Test/>}/> */}
     </Routes>
     </AnimatePresence>
   );

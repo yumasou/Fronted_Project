@@ -34,7 +34,7 @@ function DetailView() {
   }, [similar_item]);
 
   return item ? (
-    <div className="">
+    <div className="mt-4">
       <div className=" my-10 grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 ">
         <div className="bg-white box-border  rounded shadow-sm">
           <ImageGallery items={images} />

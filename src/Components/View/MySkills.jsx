@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import React from "react";
-
+import useActiveSection from "../hook/useActiveSection";
 function MySkills({ skills = [] }) {
+
+  const{ref}=useActiveSection("Skills",0.8)
+
   const ExpTitle = {
     initial: { opacity: 0 },
     animate: { opacity: 1, transition: { delay: 0.2, duration: 0.5 } },
@@ -16,17 +19,18 @@ function MySkills({ skills = [] }) {
   };
 
   return (
-    <div className="my-10  flex flex-col  items-center justify-center gap-1 lg:gap-5">
+    <motion.div id="skills" ref={ref} className=" pt-8 scroll-mt-28">
+      <div className="mx-auto sm:w-2/3 w-1/2  flex flex-col  items-center justify-center gap-1 lg:gap-5">
       <motion.header
         variants={ExpTitle}
         whileInView="animate"
         initial="initial"
         viewport={{ once: true }}
-        className="text-slate-600 font-bold"
+        className="py-5 font-bold"
       >
         My Skills
       </motion.header>
-      <ul className="w-1/2  flex flex-wrap items-center justify-center gap-3">
+      <ul className="  flex flex-wrap items-center justify-center gap-3">
         {Boolean(skills.length) &&
           skills.map((skill, index) => (
             <motion.li
@@ -43,7 +47,8 @@ function MySkills({ skills = [] }) {
           ))}
       </ul>
     </div>
-  );
+
+    </motion.div>  );
 }
 
 export default MySkills;
