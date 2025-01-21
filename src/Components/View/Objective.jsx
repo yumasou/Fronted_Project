@@ -21,8 +21,8 @@ function Objective({ objects }) {
     }),
   };
   return (
-    <div id="objective" ref={ref} className=" scroll-mt-28 py-8">
-      <motion.div className="grid grid-cols-1 text-center sm:w-2/3 w-2/3 mx-auto">
+    <div id="objective" ref={ref} className="  container mx-auto scroll-mt-72 sm:mx-auto  ">
+      <motion.div className="mx-auto grid grid-cols-1 text-center">
         <motion.h1
           variants={ExpTitle}
           whileInView="animate"
@@ -37,7 +37,7 @@ function Objective({ objects }) {
         // whileInView="animate"
         // initial="initial"
         // viewport={{once:true}}
-        className=" first-letter:ml-8 leading-10 font-mono">
+        className=" first-letter:ml-8 leading-10 line-clamp-5 sm:line-clamp-none overflow-y-scroll font-mono">
           {objects.map((m, index) => (
             <motion.span
               variants={text_motion}

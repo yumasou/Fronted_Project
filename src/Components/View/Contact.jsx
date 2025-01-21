@@ -35,7 +35,7 @@ function Contact() {
   };
   
   return (
-    <div className="w-1/2 sm:w-1/2  mx-auto py-8">
+    <div className="w-1/2 sm:w-1/2 scroll-mt-28  mx-auto py-8">
       
       <motion.div
         variants={parentVariants}
@@ -44,7 +44,7 @@ function Contact() {
         className="flex flex-row flex-wrap justify-center gap-3 items-center"
       >
         <motion.a
-          href="/files/HeinHtetPaing18052024.pdf"
+          href="/files/Hein Htet Paing(Junior Web Developer).pdf"
           download={true}
           variants={childVariants}
           initial="initial"
@@ -257,7 +257,7 @@ function Contact() {
         variants={childVariants}
         initial="initial"
         animate="animate"
-        href="https://line.me/ti/p/VRo-gBABzK">
+        href="https://line.me/ti/p/FxOcjzmdbV">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x="0px"

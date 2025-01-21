@@ -44,7 +44,7 @@ const {ref}=useActiveSection("Home",1)
     <section
       ref={ref}
       id="home"
-      className={`mx-auto pt-28 sm:w-2/3 w-2/3 lg:w-1/2`}
+      className={`mx-auto scroll-mb-38 pt-60 container`}
       
     >
       <motion.div onClick={() => setIsOpen(!isOpen)} className=" mx-auto w-40 h-40  rounded-full">
@@ -60,7 +60,7 @@ const {ref}=useActiveSection("Home",1)
             initial="hidden"
             animate="visible"
             exit="close"
-            className=" shadow-sm "
+            className=" font-mono shadow-sm w-4/5 sm:w-1/2 text-xs sm:text-base leading-6 sm:leading-8 tracking-wide sm:tracking-wider  hyphens-auto mx-auto"
           >
             <motion.ul className="*:my-1 ">
               {me.map((m, index) => {
@@ -73,8 +73,8 @@ const {ref}=useActiveSection("Home",1)
                     className="flex flex-row items-center justify-between"
                   >
                     
-                    <div className="text-left block">{m.index}</div>
-                    <div className=" text-right block ">{m.value}</div>
+                    <div className=" block">{m.index}</div>
+                    <div className="text-end block ">{m.value}</div>
                   </motion.li>
                 );
               })}

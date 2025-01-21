@@ -23,13 +23,17 @@ function Introduction() {
     },
   };
   return (
-    <div ref={ref} id="introduction" className=" scroll-mt-28 py-8">
-      <motion.div className="w-3/4 sm:w-2/3  lg:w-2/3  mx-auto grid grid-cols-1 text-center ">
+    <div
+      ref={ref}
+      id="introduction"
+      className=" container mx-auto scroll-mt-72 sm:mx-auto  py-12"
+    >
+      <motion.div className=" mx-auto grid grid-cols-1 text-center ">
         <motion.h1
-            variants={ExpTitle}
-            whileInView="animate"
-            initial="initial"
-            viewport={{ once: true }}
+          variants={ExpTitle}
+          whileInView="animate"
+          initial="initial"
+          viewport={{ once: true }}
           className="font-bold py-5"
         >
           Introduction
@@ -39,18 +43,28 @@ function Introduction() {
           whileInView="animate"
           initial="initial"
           viewport={{ once: true }}
-          className=" text-balance first-letter:ml-8 leading-10 font-mono"
+          className="indent-5 text-pretty tracking-wide line-clamp-5 sm:line-clamp-none leading-8 font-mono px-5 sm:px-0 overflow-y-scroll"
         >
-          I am Hein Htet Paing from <strong className="italic"> Myanmar</strong>
-          , and I have dedicated four years to studying programming at the
-          University of Computer Studies Monywa. Throughout my academic journey,
-          I have honed my skills in web development, with a particular focus on{" "}
-          <strong className="italic">React</strong>, accumulating nearly two
-          years of hands-on experience. My aspiration is to become a specialized{" "}
-          <strong className="italic"> MERN stack developer</strong> in the
-          future. I find immense satisfaction in overcoming challenges and
-          solving problems. Given the opportunity to join your team, I am
-          committed to delivering my best effort and ensuring success.
+          My name is Hein Htet Paing, and I am from Myanmar. I have studied
+          programming for four years at the Computer University in Monywa
+          (Myanmar), where I developed a passion for web development,
+          particularly in the React frontend. My ultimate dream is to become a
+          specialized MERN Stack developer, which drives my focus on
+          continuously learning and honing my skills in this area. I have nearly
+          two years of hands-on experience in web development, building
+          practical projects and expanding my knowledge. Due to the political
+          situation in Myanmar, I had to relocate to Bangkok, where it has been
+          challenging to find opportunities as a junior developer. While working
+          as an IT assistant in Bangkok, I never gave up on my dream career. I
+          devoted my free time to self-learning, exploring new technologies, and
+          practicing modern development tools in the MERN stack. Recently, I
+          made the decision to fully commit to my passion by leaving my IT
+          assistant role and dedicating myself to becoming a professional
+          developer. While I have practical experience, I acknowledge areas for
+          growth, such as communication, teamwork, and production-level
+          experience. I am eager to learn and improve, and I am confident that,
+          if given the opportunity to work with your team, I will bring my
+          utmost dedication and enthusiasm to every task.
         </motion.p>
       </motion.div>
     </div>

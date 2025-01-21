@@ -42,7 +42,7 @@ function Education({ edu, certificate }) {
   return (
     <div
       ref={ref}
-      className="pt-8 scroll-mt-28 sm:w-2/3 w-2/3 mx-auto"
+      className="pt-8 scroll-mt-72 container mx-auto"
       id="education"
     >
       <div className=" flex flex-col items-center justify-center gap-5">
@@ -82,16 +82,11 @@ function Education({ edu, certificate }) {
             >
               <h1 className="text-slate-700 font-bold ">
                 <span>{m.title}</span>
-                
               </h1>
               <p className="text-slate-700 font-normal">{m.center}</p>
             </VerticalTimelineElement>
-            
           ))}
         </VerticalTimeline>
-        
-
-        
       </div>
     </div>
   );

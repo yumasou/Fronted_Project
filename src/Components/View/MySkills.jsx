@@ -19,8 +19,8 @@ function MySkills({ skills = [] }) {
   };
 
   return (
-    <motion.div id="skills" ref={ref} className=" pt-8 scroll-mt-28">
-      <div className="mx-auto sm:w-2/3 w-1/2  flex flex-col  items-center justify-center gap-1 lg:gap-5">
+    <motion.div id="skills" ref={ref} className="mx-auto container  py-8 scroll-mt-96">
+      <div className="mx-auto  flex flex-col  items-center justify-center gap-1 lg:gap-5">
       <motion.header
         variants={ExpTitle}
         whileInView="animate"

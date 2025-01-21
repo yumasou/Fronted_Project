@@ -21,7 +21,7 @@ const aboutMe = [
   { index: "Marital Status", value: "Single" },
   { index: "Languages", value: "Myanmar/English" },
   { index: "Passport", value: "MH198276" },
-  { index: "Expected Salary", value: "20,000Baht" },
+  { index: "Expected Salary", value: "22,000Baht" },
   {
     index: "Address",
     value: "Ramkhamhaeng-50 rd, Hua Mak, Bangkapi, Thailand",
@@ -34,30 +34,48 @@ const skills = [
   "Bootstrap",
   "Tailwind CSS",
   "JavaScript",
-  "React.JS",
-  "Node.JS",
-  "Express.JS",
-  "MongoDB",
+  "React",
+  "Node",
+  "Express",
+  "MongoDB","SQLite","Prisma",
+  "React Query",
   "Redux",
   "Git",
   "API",
-  "RESTful API",
+  
   "Framer Motion",
 ];
-const myExps = {
-  position: "Junior FrontEnd Developer",
-  date: "MAR 2023 to Nov 2023",
-  company: "Promes MM",
-  projects: ["Billing App", "Real Estate App"],
-  responsesity: [
-    "Collaborate with a dynamic team to design and implement engaging and responsive dashboards.",
-    "Develop APIs to support mobile applications, ensuring efficient data flow and communication between the frontend and backend.",
-    "Collaborate with backend developers to integrate frontend components seamlessly with the server-side logic.",
-    "Stay up-to-date with industry trends and best practices, bringing innovative solutions to the development process",
-  ],
-};
+const myExps = [
+  {
+    position: "Junior FrontEnd Developer",
+    date: "MAR 2023 to Nov 2023",
+    company: "Promes MM",
+    projects: ["Billing App", "Real Estate App"],
+    responsesity: [
+      "Collaborate with a dynamic team to design and implement engaging and responsive dashboards.",
+      "Develop APIs to support mobile applications, ensuring efficient data flow and communication between the frontend and backend.",
+      "Collaborate with backend developers to integrate frontend components seamlessly with the server-side logic.",
+      "Stay up-to-date with industry trends and best practices, bringing innovative solutions to the development process.",
+    ],
+  },
+  {
+    position: "IT Assistance",
+    date: "May 2024 to December 2024",
+    company: "JM505 Computer Sales & Service",
+    projects: [],
+    responsesity: [
+      "Selling computer (Laptop & Desktop) hardware and related accessories.",
+      "Packing and preparing Notebooks to deliver across every part of the country and oversea.",
+      "Diagnostics and troubleshooting (hardware or software issues).",
+      "Virus/malware removal and data recovery.",
+      "Upgrades (RAM, storage, GPU) and custom builds.",
+      "Maintenance (hardware cleaning, thermal paste replacement, etc.)."
+    ],
+  }
+]
+
 const objective =
-  "Highly skilled and motivated web developer in front-end development , seeking to leverage expertise in MERN stack to contribute effectively to  your development team. Committed to delivering high-quality, user-centric web solutions while continuously expanding knowledge and staying abreast of emerging trends in web development";
+  "Motivated Web developer with a passion for developing innovative and user-friendly websites in Web development, seeking to leverage expertise in MERN stack to deliver scalable and efficient solutions, while contributing effectively to your dynamic development team. Committed to delivering high-quality, user-centric web solutions while continuously expanding knowledge and staying abreast of emerging trends in web development.";
 
 const edu = {
   school: "University of Computer Studies",
@@ -74,7 +92,7 @@ const certificate = [
     center: "I-Campus Complete IT Training Solution",
   },
   {
-    title: "Professional Web Developer",
+    title: "Professional Web Developer Course",
     year: "2020",
     center: "Fairway Technology",
   },
@@ -141,7 +159,7 @@ function Home() {
         <Objective objects={objective.split("")} />
         <Education edu={edu} certificate={certificate} />
         <MySkills skills={skills} />
-        <MyExperience exp={myExps} />
+        <MyExperience Exp={myExps} />
         <Projects projects={projects} />
         <Footer />
       </motion.div>

@@ -5,7 +5,7 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import useActiveSection from "../hook/useActiveSection";
-function MyExperience({ exp }) {
+function MyExperience({ Exp }) {
   const { ref } = useActiveSection("Experience", 0.75);
   const work_icon = (
     <svg
@@ -32,7 +32,7 @@ function MyExperience({ exp }) {
   return (
     <div
       ref={ref}
-      className="pt-8 scroll-mt-28 w-2/3 lg:w-2/3 mx-auto "
+      className="pt-8 scroll-mt-28 container mx-auto "
       id="experience"
     >
       <motion.h1
@@ -46,7 +46,7 @@ function MyExperience({ exp }) {
       </motion.h1>
       <VerticalTimeline lineColor="grey">
         
-        <VerticalTimelineElement
+        {Exp.map(exp=><VerticalTimelineElement
           contentStyle={{ background: " #f3f4f6", border: "none" }}
           className="vertical-timeline-element--education "
           iconStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
@@ -68,7 +68,7 @@ function MyExperience({ exp }) {
               </li>
             )}
           </ul>
-        </VerticalTimelineElement>
+        </VerticalTimelineElement>)}
       </VerticalTimeline>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import useActiveSection from "../hook/useActiveSection";
+
 function Projects({ projects }) {
   const { ref } = useActiveSection("Projects", 0.75);
 
@@ -9,10 +10,9 @@ function Projects({ projects }) {
     animate: { opacity: 1, transition: { delay: 0.2, duration: 0.5 } },
   };
 
-
   return (
-    <div ref={ref} className="  pt-16 pb-12 " id="project">
-      <div className="w-3/4 sm:w-2/3 mx-auto">
+    <div ref={ref} className=" container mx-auto px-4 pt-16 pb-12 " id="project">
+      <div className=" mx-auto">
         <motion.header
           variants={ExpTitle}
           initial="initial"
@@ -46,7 +46,7 @@ const Project = ({ image_url, link, title, description, language, index }) => {
       },
     }),
   };
- 
+
   return (
     <motion.div
       key={index}
@@ -58,14 +58,17 @@ const Project = ({ image_url, link, title, description, language, index }) => {
       onClick={() => (window.location.href = link)}
       className="group  h-[15rem] shadow-lg rounded-lg overflow-hidden relative cursor-pointer"
     >
-      
       <img
-        className=" top-5 absolute  group-even:right-0  h-full  w-1/2 rounded-lg
-        group-hover:scale-105
-        group-hover:translate-x-5
-        group-hover:translate-y-5
-        group-even:group-hover:-translate-x-5
-        group-even:group-hover:translate-y-5
+        className=" top-5 absolute scale-100 group-even:right-0  h-full  w-1/2 rounded-lg 
+        origin-bottom-left
+        group-even:origin-bottom-right
+        group-hover:scale-75
+         group-hover:translate-x-5
+         group-hover:-translate-y-5
+         
+         group-hover:rotate-12
+         group-even:group-hover:-rotate-12
+        
         
         "
         src={image_url}
@@ -75,10 +78,17 @@ const Project = ({ image_url, link, title, description, language, index }) => {
       <motion.div className="group-even:-translate-x-[100%] pl-2  absolute top-0 right-0 w-1/2 h-full  ">
         <h1 className="font-bold my-2">{title}</h1>
         <ul className="flex flex-col gap-3">
-          <li className="flex flex-wrap gap-1 text-lg text-purple-500 text-shadow-2xl">{language.map(m=>
-            <small className="bg-slate-700 rounded-lg px-2 py-1 backdrop:blur-4xl shadow-md bg-opacity-10 ">{m}</small>
-          )}</li>
-          <li> <small className="text-balance ">{description}</small></li>
+          <li className="flex flex-wrap gap-1 text-lg text-purple-500 text-shadow-2xl">
+            {language.map((m) => (
+              <small className="bg-slate-700 rounded-lg px-2 py-1 backdrop:blur-4xl shadow-md bg-opacity-10 ">
+                {m}
+              </small>
+            ))}
+          </li>
+          <li>
+            {" "}
+            <small className="text-balance ">{description}</small>
+          </li>
         </ul>
       </motion.div>
     </motion.div>
