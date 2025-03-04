@@ -9,10 +9,6 @@ export const Links = [
     name: "Objective",
     title: "#objective",
   },
-  // {
-  //   name: "Contact",
-  //   title: "#contact",
-  // },
   {
     name: "Education",
     title: "#education",

@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
-import Header from "./Components/Layout/Header";
+// import Header from "./Components/Layout/Header";
 import Body from "./Components/Layout/Body";
-import Footer from "./Components/Layout/Footer";
+// import Footer from "./Components/Layout/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { changeMode } from "./Components/counter/modeSlice";
 function App() {

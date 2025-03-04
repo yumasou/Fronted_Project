@@ -37,12 +37,13 @@ const skills = [
   "React",
   "Node",
   "Express",
+  "TypeScript",
+  "Shadcn/ui",
   "MongoDB","SQLite","Prisma",
   "React Query",
   "Redux",
   "Git",
   "API",
-  
   "Framer Motion",
 ];
 const myExps = [
@@ -127,7 +128,13 @@ const projects = [
     description: "This is simple Note application using by React",
     language: ["React", "CSS", "LocalStorage"],
     link: "https://note-application-with-react.netlify.app/",
-  },
+  },{
+    title:"Social App",
+    image_url:"/images/social_app.png",
+    description:"A social application that including features like register, login, add post, delete post, add comment, delete comment, like post, like comment, follow, unfollow, chat, reat-time notification and etc..",
+    language:["React","React Router","React Query","Tailwind","Express","Prisma","SQLite","JsonWebToken","Socket.io"],
+    link:"https://frontend-app-k86t.onrender.com"
+  }
 ];
 function Home() {
   const containerVarient = {
