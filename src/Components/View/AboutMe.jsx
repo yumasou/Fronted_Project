@@ -50,7 +50,7 @@ const {ref}=useActiveSection("Home",1)
       <motion.div onClick={() => setIsOpen(!isOpen)} className=" mx-auto w-40 h-40  rounded-full">
         <motion.img
           className="w-40 h-40   border-2 border-transparent hover:border-purple-500 rounded-full"
-          src="/images/PSX_20231121_015246.jpg"
+          src="/images/heinhtetpaing.jpg"
           alt="Hein Htet Paing"
         />
       </motion.div>
