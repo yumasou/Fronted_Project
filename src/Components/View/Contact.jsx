@@ -240,7 +240,7 @@ function Contact() {
           variants={childVariants}
           initial="initial"
           animate="animate"
-          href="https://github.com/yumasou"
+          href="https://github.com/dev-heinhtetpaing"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
