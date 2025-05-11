@@ -1,57 +1,61 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import useActiveSection from "../hook/useActiveSection";
+import { containervariants, ExpTitle } from "./AboutMe";
 function Objective({ objects }) {
-  const {ref}=useActiveSection("Objective",1)
-  const ExpTitle = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { delay: 0.2, duration: 0.5 } },
-  };
-  const p_motion = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    // transition: { when: "beforeChildren",staggerChildren: 0.3, },
-  };
+  const { ref } = useActiveSection("Objective", 1);
+
   const text_motion = {
     initial: { y: 100, opacity: 0 },
     animate: (index) => ({
       y: 0,
       opacity: 1,
-      transition: {type:"spring",stiffness:180,damping:8, delay: 0.015 * index },
+      transition: {
+        type: "spring",
+        stiffness: 180,
+        damping: 8,
+        delay: 0.015 * index,
+      },
     }),
   };
   return (
-    <div id="objective" ref={ref} className="  container mx-auto scroll-mt-72 sm:mx-auto  ">
-      <motion.div className="mx-auto grid grid-cols-1 text-center">
-        <motion.h1
-          variants={ExpTitle}
-          whileInView="animate"
-          initial="initial"
-          viewport={{ once: true }}
-          className="font-bold  py-5"
-        >
-          Career Objective
-        </motion.h1>
-        <motion.p
-        // variants={p_motion}
-        // whileInView="animate"
-        // initial="initial"
-        // viewport={{once:true}}
-        className=" first-letter:ml-8 leading-10 line-clamp-5 sm:line-clamp-none overflow-y-scroll font-mono">
-          {objects.map((m, index) => (
-            <motion.span
-              variants={text_motion}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              custom={index}
-            >
-              {m}
-            </motion.span>
-          ))}
-        </motion.p>
+    <AnimatePresence>
+      <motion.div
+        variants={containervariants}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        id="objective"
+        ref={ref}
+        className=" mx-auto my-44 scroll-mt-72"
+      >
+        <motion.div className="mx-auto grid grid-cols-1 ">
+          <motion.h1
+            variants={ExpTitle}
+            whileInView="animate"
+            initial="initial"
+            viewport={{ once: true }}
+            className="font-bold text-2xl  my-3"
+          >
+            Career Objective
+          </motion.h1>
+          <motion.p className="indent-5 text-pretty tracking-wide md:tracking-widest leading-10 text-sm md:text-base ">
+            {objects.map((m, index) => (
+              <motion.span
+                key={index}
+                variants={text_motion}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                custom={index}
+              >
+                {m}
+              </motion.span>
+            ))}
+          </motion.p>
+        </motion.div>
       </motion.div>
-    </div>
+    </AnimatePresence>
   );
 }
 

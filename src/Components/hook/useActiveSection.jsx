@@ -3,7 +3,7 @@ import { setAcitveSection } from "../counter/ActiveSectionSlice";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 
-const useActiveSection=(section,threshold=0.75)=>{
+const useActiveSection=(section,threshold=0.5)=>{
     const dispatch=useDispatch()
     
     const {ref,inView}=useInView({
@@ -13,7 +13,7 @@ const useActiveSection=(section,threshold=0.75)=>{
         if(inView){
             dispatch(setAcitveSection(section))
         }
-    })
+    },[inView,section,dispatch,ref])
     return {ref}
 }
 export default useActiveSection

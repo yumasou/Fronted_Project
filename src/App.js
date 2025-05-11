@@ -12,7 +12,7 @@ function App() {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
-      class="w-6 h-6"
+      className="w-6 h-6"
     >
       <path
         fill-rule="evenodd"
@@ -29,7 +29,7 @@ function App() {
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="w-6 h-6"
+      className="w-6 h-6"
     >
       <path
         stroke-linecap="round"
@@ -46,7 +46,7 @@ function App() {
         </BrowserRouter>
         <span 
           onClick={() => dispatch(changeMode())}
-          className=" cursor-pointer fixed right-10 bottom-10 z-20"
+          className=" cursor-pointer fixed right-10 bottom-10 md:right-20 md:bottom-16 z-20"
         >
         {mode==="dark"?night:day}
         </span>

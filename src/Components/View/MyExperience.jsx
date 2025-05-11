@@ -1,12 +1,13 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import useActiveSection from "../hook/useActiveSection";
+import { containervariants, ExpTitle } from "./AboutMe";
 function MyExperience({ Exp }) {
-  const { ref } = useActiveSection("Experience", 0.75);
+  const { ref } = useActiveSection("Experiences", 0.3);
   const work_icon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +15,7 @@ function MyExperience({ Exp }) {
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="w-6 h-6"
+      className="w-6 h-6"
     >
       <path
         stroke-linecap="round"
@@ -24,53 +25,68 @@ function MyExperience({ Exp }) {
     </svg>
   );
 
-  const ExpTitle = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { delay: 0.2, duration: 0.5 } },
-  };
-
   return (
-    <div
-      ref={ref}
-      className="pt-8 scroll-mt-28 container mx-auto "
-      id="experience"
-    >
-      <motion.h1
-        variants={ExpTitle}
-        whileInView="animate"
+    <AnimatePresence>
+      <motion.div
+        variants={containervariants}
         initial="initial"
+        whileInView="animate"
         viewport={{ once: true }}
-        className=" text-lg text-center mb-4 font-bold"
+        ref={ref}
+        className="pt-8 mx-auto mt-12"
+        id="experience"
       >
-        My Experience
-      </motion.h1>
-      <VerticalTimeline lineColor="grey">
-        
-        {Exp.map(exp=><VerticalTimelineElement
-          contentStyle={{ background: " #f3f4f6", border: "none" }}
-          className="vertical-timeline-element--education "
-          iconStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
-          date={`${exp.date}`}
-          dateClassName="text-slate-500 mx-0 lg:mx-3"
-          icon={work_icon}
+        <motion.h1
+          variants={ExpTitle}
+          whileInView="animate"
+          initial="initial"
+          viewport={{ once: true }}
+          className=" text-2xl text-center my-3 font-bold"
         >
-          <h1 className="text-slate-700 font-bold ">
-            <header>{exp.company}</header>
-            <small className="text-slate-600">{exp.position}</small>
-          </h1>
-          <div className="my-1 flex flex-wrap gap-2">
-          {exp.projects.map((m,index)=><small key={index} className="bg-slate-700 text-shadow-xl rounded-lg px-2 py-1 backdrop:blur-4xl shadow-md bg-opacity-10  text-slate-700  ">{m}</small>)}
-          </div>
-          <ul className="my-1">
-            {exp.responsesity.map((m,index)=>
-              <li key={index} className="font-mono text-slate-700 py-2 first:mt-2 text-pretty text-xs leading-7 text-balence flex">
-                {m}
-              </li>
-            )}
-          </ul>
-        </VerticalTimelineElement>)}
-      </VerticalTimeline>
-    </div>
+          Experiences
+        </motion.h1>
+        <VerticalTimeline lineColor="grey">
+          {Exp.map((exp, index) => (
+            <VerticalTimelineElement
+              key={index}
+              contentStyle={{ background: " #f3f4f6", border: "none" }}
+              className="vertical-timeline-element--education tracking-wide leading-8"
+              iconStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
+              date={`${exp.date}`}
+              dateClassName="text-slate-500 mx-0 lg:mx-3"
+              icon={work_icon}
+            >
+              <h1 className="text-slate-700 font-bold ">
+                <header className="font-bold text-2xl">{exp.company}</header>
+                <small className="text-base text-slate-600">
+                  {exp.position}
+                </small>
+              </h1>
+              <div className="my-1 flex flex-wrap gap-2">
+                {exp.projects.map((m, index) => (
+                  <small
+                    key={index}
+                    className="bg-slate-700 text-shadow-xl rounded-lg px-2 py-1 backdrop:blur-4xl shadow-md bg-opacity-10  text-slate-700  "
+                  >
+                    {m}
+                  </small>
+                ))}
+              </div>
+              <ul className="my-1">
+                {exp.responsesity.map((m, index) => (
+                  <li
+                    key={index}
+                    className=" text-slate-700 py-2 first:mt-2 text-pretty text-sm sm:text-base leading-7 text-balence flex"
+                  >
+                    {m}
+                  </li>
+                ))}
+              </ul>
+            </VerticalTimelineElement>
+          ))}
+        </VerticalTimeline>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 

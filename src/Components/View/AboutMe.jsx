@@ -1,87 +1,126 @@
-import React, {  useState } from "react";
-import { motion } from "framer-motion";
+import React, {  useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import useActiveSection from "../hook/useActiveSection";
 
+export const containervariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 120,
+      duration: 1,
+      beforeChildren: true,
+    },
+  },
+};
+
+export const personalvariants = {
+  hidden: { opacity: 0, y: -100, transition: { delay: 0.2, duration: 1 } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.1,
+      duration: 0.5,
+      type: "spring",
+      stiffness: 260,
+      damping: 20,
+      staggerChildren: 0.5,
+    },
+  },
+};
+
+export const ExpTitle = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { delay: 0.2, duration: 0.5 } },
+};
+
 function AboutMe({ me }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const { ref } = useActiveSection("Home", 0.5);
+  const parentRef = useRef(null);
+  const parentScroll = useScroll({
+    target: parentRef,
+    offset: ["start start", "end end"],
+  });
 
-const {ref}=useActiveSection("Home",1)
+  const translateLayer1 = useTransform(
+    parentScroll.scrollYProgress,
+    [0, 0.1, 0.2, 0.3],
+    ["150%", "50%", "25%", "0%"]
+  );
+  const translateLayer2 = useTransform(
+    parentScroll.scrollYProgress,
+    [0.3, 0.4, 0.5, 0.6],
+    ["-100%", "-50%", "-25%", "0%"]
+  );
 
-  const containervariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 120,
-        duration: 1,
-        beforeChildren: true,
-      },
-    },
-   
-  };
-
-  const personalvariants = {
-    hidden: { opacity: 0, y: -100, transition: { delay: 0.2, duration: 1 } },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.1,
-        duration: 0.5,
-        type: "spring",
-        stiffness: 260,
-        damping: 20,
-        staggerChildren: 0.5,
-      },
-    },
-    
-  };
-  
-
+  const opacityLayer1 = useTransform(
+    parentScroll.scrollYProgress,
+    [0, 0.1, 0.2, 0.3],
+    [1, 1, 1, 1]
+  );
+  const opacityLayer2 = useTransform(
+    parentScroll.scrollYProgress,
+    [0.3, 0.4, 0.5, 0.6],
+    [0, 0.5, 1, 1]
+  );
 
   return (
-    <section
-      ref={ref}
-      id="home"
-      className={`mx-auto scroll-mb-38 pt-60 container`}
-      
-    >
-      <motion.div onClick={() => setIsOpen(!isOpen)} className=" mx-auto w-40 h-40  rounded-full">
-        <motion.img
-          className="w-40 h-40   border-2 border-transparent hover:border-purple-500 rounded-full"
-          src="/images/heinhtetpaing.jpg"
-          alt="Hein Htet Paing"
-        />
-      </motion.div>
-        {isOpen && (
+    <AnimatePresence>
+      <motion.div
+        variants={containervariants}
+        initial="initial"
+        whileInView="animate"
+        viewport={{once:true}}
+        ref={ref}
+        className="w-full -scroll-mt-72 "
+        id="home"
+      >
+        <motion.div ref={parentRef} className={` h-[200vh] `}>
           <motion.div
-            variants={containervariants}
-            initial="hidden"
-            animate="visible"
-            exit="close"
-            className=" font-mono shadow-sm w-4/5 sm:w-1/2 text-xs sm:text-base leading-6 sm:leading-8 tracking-wide sm:tracking-wider  hyphens-auto mx-auto"
+            className="sticky w-full overflow-hidden top-1/2  md:-translate-y-1/2 -translate-y-1/4 grid grid-cols-1 md:grid-cols-2 gap-8 items-end"
           >
-            <motion.ul className="*:my-1 ">
-              {me.map((m, index) => {
-                return (
-                  <motion.li
-                    variants={personalvariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="close"
-                    className="flex flex-row items-center justify-between"
-                  >
-                    
-                    <div className=" block">{m.index}</div>
-                    <div className="text-end block ">{m.value}</div>
-                  </motion.li>
-                );
-              })}
+            <motion.img
+              style={{
+                translateX: translateLayer1,
+                opacity: opacityLayer1,
+                transitionDuration: "0.5s",
+                transition: { type: "spring" },
+              }}
+              className="sticky"
+              src="/images/HeinHtetPaing_Adobe_remove_croped.png"
+              alt="Hein Htet Paing"
+            />
+
+            <motion.ul
+              className="sticky"
+              style={{
+                translateX: translateLayer2,
+                opacity: opacityLayer2,
+                transitionDuration: "0.5s",
+                transition: { type: "spring" },
+              }}
+            >
+              {me.map((m, index) => (
+                <motion.li
+                  key={index}
+                  className="flex justify-between items-center text-end even:bg-gray-400 px-2 rounded-md leading-10"
+                >
+                  <span>{m.index}</span>
+                  <span className="font-bold ">{m.value}</span>
+                </motion.li>
+              ))}
             </motion.ul>
           </motion.div>
-        )}
-    </section>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 

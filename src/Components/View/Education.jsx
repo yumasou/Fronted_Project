@@ -1,11 +1,12 @@
 import React from "react";
-import { color, motion } from "framer-motion";
+import { AnimatePresence, color, motion } from "framer-motion";
 import useActiveSection from "../hook/useActiveSection";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
+import { containervariants, ExpTitle } from "./AboutMe";
 
 function Education({ edu, certificate }) {
   const acid_icon = (
@@ -15,7 +16,7 @@ function Education({ edu, certificate }) {
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="w-6 h-6"
+      className="w-6 h-6"
     >
       <path
         stroke-linecap="round"
@@ -25,24 +26,18 @@ function Education({ edu, certificate }) {
     </svg>
   );
 
-  const { ref } = useActiveSection("Education", 0.75);
-  const ExpTitle = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { delay: 0.2, duration: 0.5 } },
-  };
-  const list = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    transition: { delay: 0.1 },
-  };
-  const item = {
-    initial: { x: -100 },
-    animate: { x: 0, transition: { delay: 0.02 } },
-  };
+  const { ref } = useActiveSection("Education", 0.6);
+ 
+
   return (
-    <div
+    <AnimatePresence>
+    <motion.div
+      variants={containervariants}
+      initial="initial"
+      whileInView="animate"
+      viewport={{once:true}}
       ref={ref}
-      className="pt-8 scroll-mt-72 container mx-auto"
+      className="mx-auto mt-12 scroll-mt-40"
       id="education"
     >
       <div className=" flex flex-col items-center justify-center gap-5">
@@ -51,11 +46,11 @@ function Education({ edu, certificate }) {
           whileInView="animate"
           initial="initial"
           viewport={{ once: true }}
-          className="text-lg font-bold"
+          className="text-2xl font-bold my-3"
         >
           Education
         </motion.h1>
-        <VerticalTimeline lineColor="grey">
+        <VerticalTimeline lineColor="grey"  >
           <VerticalTimelineElement
             contentStyle={{ background: " #f3f4f6", border: "none" }}
             className="vertical-timeline-element--education "
@@ -64,7 +59,7 @@ function Education({ edu, certificate }) {
             dateClassName="text-slate-500 mx-0 lg:mx-3"
             icon={acid_icon}
           >
-            <h1 className="text-slate-700 font-bold ">
+            <h1 className="text-slate-700 font-bold text-lg ">
               <span>{edu.major}</span>
               <span>({edu.status})</span>
             </h1>
@@ -80,7 +75,7 @@ function Education({ edu, certificate }) {
               dateClassName="text-slate-500 mx-0 lg:mx-3"
               icon={acid_icon}
             >
-              <h1 className="text-slate-700 font-bold ">
+              <h1 className="text-slate-700 font-bold text-lg">
                 <span>{m.title}</span>
               </h1>
               <p className="text-slate-700 font-normal">{m.center}</p>
@@ -88,7 +83,8 @@ function Education({ edu, certificate }) {
           ))}
         </VerticalTimeline>
       </div>
-    </div>
+    </motion.div>
+    </AnimatePresence>
   );
 }
 

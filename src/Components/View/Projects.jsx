@@ -1,95 +1,141 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import useActiveSection from "../hook/useActiveSection";
+import { containervariants, ExpTitle } from "./AboutMe";
 
 function Projects({ projects }) {
-  const { ref } = useActiveSection("Projects", 0.75);
-
-  const ExpTitle = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { delay: 0.2, duration: 0.5 } },
-  };
+  const { ref } = useActiveSection("Projects", 0.1);
 
   return (
-    <div ref={ref} className=" container mx-auto px-4 pt-16 pb-12 " id="project">
-      <div className=" mx-auto">
+    <AnimatePresence>
+      <motion.div
+        variants={containervariants}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        ref={ref}
+        className="mt-20 -scroll-mt-44"
+        id="project"
+      >
         <motion.header
           variants={ExpTitle}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className="mx-auto text-center font-bold my-5"
+          className=" translate-y-full text-center font-bold text-2xl"
         >
           Projects
         </motion.header>
-        <motion.div className="grid gap-5 grid-cols-1 lg:grid-cols-2">
+
+        <motion.div
+          className="sticky max-w-full overflow-hidden 
+        grid grid-cols-1 "
+        >
           {Boolean(projects.length) &&
             projects.map((m, index) => (
-              <Project {...m} key={index} index={index} />
+              <React.Fragment key={index}>
+                <Project m={m}  />
+              </React.Fragment>
             ))}
         </motion.div>
-      </div>
-    </div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
-const Project = ({ image_url, link, title, description, language, index }) => {
-  const card_variant = {
-    hidden: { y: 100, opacity: 0 },
-    visible: (index) => ({
-      y: 0,
+
+const Project = ({ m }) => {
+  const layerRef = useRef(null);
+  const techStackVariant = {
+    initial: { opacity: 0, y: 100 },
+    animate: (index) => ({
       opacity: 1,
+      y: 0,
       transition: {
         type: "spring",
-        stiffness: 180,
-        damping: 10,
-        delay: 0.2 * index,
+        delay: index * 0.05,
       },
     }),
   };
+  const layerScroll = useScroll({
+    target: layerRef,
+    offset: ["start start", "end end"],
+  });
+
+  const layer1Translate = useTransform(
+    layerScroll.scrollYProgress,
+    [0, 0.1, 0.2, 0.3, 0.4],
+    ["100%", "75%", "50%", "25%", "0%"]
+  );
+  const layer1Opacity = useTransform(
+    layerScroll.scrollYProgress,
+    [0, 0.1, 0.2, 0.3, 0.4],
+    [1, 1, 1, 1, 1]
+  );
+
+  const layer2Translate = useTransform(
+    layerScroll.scrollYProgress,
+    [0, 0.1, 0.2, 0.3, 0.4],
+    ["-100%", "-75%", "-50%", "-25%", "0%"]
+  );
+  const layer2Opacity = useTransform(
+    layerScroll.scrollYProgress,
+    [0, 0.1, 0.2, 0.3, 0.4],
+    [0, 0, 0.5, 1, 1]
+  );
 
   return (
-    <motion.div
-      key={index}
-      variants={card_variant}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      custom={index}
-      onClick={() => (window.location.href = link)}
-      className="group  h-[15rem] shadow-lg rounded-lg overflow-hidden relative cursor-pointer"
-    >
-      <img
-        className=" top-5 absolute scale-100 group-even:right-0  h-full  w-1/2 rounded-lg 
-        origin-bottom-left
-        group-even:origin-bottom-right
-        group-hover:scale-75
-         group-hover:translate-x-5
-         group-hover:-translate-y-5
-         
-         group-hover:rotate-12
-         group-even:group-hover:-rotate-12
-        
-        
-        "
-        src={image_url}
-        alt=""
-        style={{ objectFit: "cover" }}
-      />
-      <motion.div className="group-even:-translate-x-[100%] pl-2  absolute top-0 right-0 w-1/2 h-full  ">
-        <h1 className="font-bold my-2">{title}</h1>
-        <ul className="flex flex-col gap-3">
-          <li className="flex flex-wrap gap-1 text-lg text-purple-500 text-shadow-2xl">
-            {language.map((m) => (
-              <small className="bg-slate-700 rounded-lg px-2 py-1 backdrop:blur-4xl shadow-md bg-opacity-10 ">
-                {m}
+    <motion.div  ref={layerRef} className="w-full h-[130vh]">
+      <motion.div
+        onClick={() => (window.location.href = m.link)}
+        className="sticky top-0 md:translate-y-full translate-y-1/2 group rounded-lg  cursor-pointer flex-col md:flex-row flex gap-4 md:gap-8 "
+      >
+        <motion.img
+          style={{
+            translateX: layer1Translate,
+            opacity: layer1Opacity,
+            transitionDuration: ".3s",
+            transition: { type: "spring" },
+          }}
+          className=" aspect-square object-cover w-[500px]  rounded-md  border "
+          src={m.image_url}
+          alt={m.image_url}
+        />
+        <motion.div
+          style={{
+            translateX: layer2Translate,
+            opacity: layer2Opacity,
+            transitionDuration: ".3s",
+            transition: { type: "spring" },
+          }}
+        >
+          <h1 className="font-bold my-2 text-2xl">{m.title}</h1>
+          <ul className="flex flex-col gap-3">
+            <li>
+              <small className="text-pretty tracking-wide md:tracking-widest leading-10 text-sm md:text-base">
+                {m.description}
               </small>
-            ))}
-          </li>
-          <li>
-            {" "}
-            <small className="text-balance ">{description}</small>
-          </li>
-        </ul>
+            </li>
+            <li className="flex flex-wrap gap-4 md:gap-6 text-lg  text-shadow-2xl">
+              {m.language.map((n, index) => (
+                <motion.span
+                  key={index}
+                  variants={techStackVariant}
+                  initial="initial"
+                  whileInView="animate"
+                  custom={index}
+                  className="text-center items-center rounded-lg border bg-slate-50 shadow-sm  px-3 py-1 text-slate-600"
+                >
+                  {n}
+                </motion.span>
+              ))}
+            </li>
+          </ul>
+        </motion.div>
       </motion.div>
     </motion.div>
   );

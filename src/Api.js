@@ -1,4 +1,3 @@
-export const Base_URL = "https://dummyjson.com/products";
 export const Links = [
   { name: "Home",title: "#home" },
   {
@@ -18,7 +17,7 @@ export const Links = [
     title: "#skills",
   },
   {
-    name: "Experience",
+    name: "Experiences",
     title: "#experience",
   },
   
